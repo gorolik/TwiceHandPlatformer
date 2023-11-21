@@ -8,5 +8,7 @@ namespace Sources.Services.Input
     {
         float HorizontalAxis { get; }
         event Action Jump;
+        event Action PickUpItemInLeftHand;
+        event Action PickUpItemInRightHand;
     }
 }
