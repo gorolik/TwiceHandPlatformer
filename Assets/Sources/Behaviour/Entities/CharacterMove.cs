@@ -2,12 +2,12 @@
 
 namespace Sources.Behaviour.Entities
 {
-    public class CharacterMove : MonoBehaviour
+    public abstract class CharacterMove : MonoBehaviour
     {
+        private const float _jumpRoughness = 8;
+        
         [SerializeField] private float _moveSpeed = 7;
         [SerializeField] private float _jumpForce = 13;
-        [SerializeField] private float _maxJumpTime = 0.5f;
-        [SerializeField] private float _jumpReleaseMod = 2;
         [SerializeField] private Rigidbody2D _rigidbody;
         [SerializeField] private GroundChecker _groundChecker;
         [SerializeField] private CharacterAnimator _characterAnimator;
@@ -16,17 +16,17 @@ namespace Sources.Behaviour.Entities
 
         private enum State { Stay, Walking, Falling }
 
+        private float _jumpMargin;
         private bool _jumping;
-        private float _jumpTime;
         private State _state;
 
-        private void Update()
+        protected virtual void Update()
         {
             SetMovementState();
             JumpUpdate();
         }
 
-        public void Move(float horizontal)
+        protected void Move(float horizontal)
         {
             horizontal = Mathf.Clamp(horizontal, -1, 1);
             
@@ -34,36 +34,36 @@ namespace Sources.Behaviour.Entities
             _rigidbody.velocity = new Vector2(direction.x * _moveSpeed, _rigidbody.velocity.y);
         }
         
-        public void TryStartJump()
+        protected void TryStartJump()
         {
             if (_jumping == false && _groundChecker.IsGrounded())
             {
-                _jumpTime = _maxJumpTime;
+                _jumpMargin = _jumpForce;
                 _jumping = true;
                 
                 _characterAnimator.Jump();
             }
         }
 
-        public void EndJump()
+        protected void EndJump()
         {
             if (_jumping)
             {
-                _rigidbody.velocity = new Vector2(_rigidbody.velocity.x, _rigidbody.velocity.y / _jumpReleaseMod);
+                //_rigidbody.velocity = new Vector2(_rigidbody.velocity.x, _rigidbody.velocity.y / _jumpReleaseMod);
                 
-                _jumpTime = 0;
+                _jumpMargin = 0;
                 _jumping = false;
             }
         }
 
         private void JumpUpdate()
         {
-            if(_jumping && _jumpTime > 0) 
+            if(_jumping && _jumpMargin > 0) 
             {
-                _rigidbody.velocity = new Vector2(_rigidbody.velocity.x, _jumpForce);
-                _jumpTime = Mathf.Clamp(_jumpTime - Time.deltaTime, 0, float.MaxValue);
+                _rigidbody.AddForce(new Vector2(0, _jumpForce * _jumpRoughness * Time.deltaTime), ForceMode2D.Impulse);
+                _jumpMargin -= _jumpForce * _jumpRoughness * Time.deltaTime;
 
-                if (_jumpTime <= 0) 
+                if (_jumpMargin <= 0) 
                     EndJump();
             }
         }

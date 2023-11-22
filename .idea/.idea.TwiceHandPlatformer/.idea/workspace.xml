@@ -13,6 +13,7 @@
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/../../../ASSETS/Профессионалы 2023/Региональный этап/Govorkov/Assets/Scripts/DataBase/DataBase.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/../Armored Tanks/Assets/Scripts/Special/Extensions.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/../Breakthrough/Assets/Sources/Items/Item.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/../Flying Intruders/Assets/Sources/Behaviour/Enemy/EnemyAnimator.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Sources/Infrastructure/DI/AllServices.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Sources/Infrastructure/DI/IService.cs" root0="SKIP_HIGHLIGHTING" />
@@ -93,7 +94,7 @@
       <updated>1700562700664</updated>
       <workItem from="1700562702299" duration="9603000" />
       <workItem from="1700629306572" duration="4519000" />
-      <workItem from="1700635209545" duration="8259000" />
+      <workItem from="1700635209545" duration="11421000" />
     </task>
     <servers />
   </component>

@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 8521522078232171568}
   - component: {fileID: 8027323735859516162}
   - component: {fileID: 6804473143976696684}
-  - component: {fileID: 1087105017975640418}
   - component: {fileID: 6537227596043929656}
   - component: {fileID: 2448635382322434624}
   - component: {fileID: 2126339338448122895}
@@ -66,23 +65,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6c6add0f84661ab4cb0866b609df7085, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _characterMove: {fileID: 1087105017975640418}
---- !u!114 &1087105017975640418
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3005183374229783634}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bb30f864e48da744fb548e60d6df4718, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _moveSpeed: 7
-  _jumpForce: 25
-  _maxJumpTime: 0.3
-  _jumpReleaseMod: 2
+  _moveSpeed: 14
+  _jumpForce: 32
   _rigidbody: {fileID: 2448635382322434624}
   _groundChecker: {fileID: 6537227596043929656}
   _characterAnimator: {fileID: 6079458590310187176}
@@ -185,7 +169,6 @@ GameObject:
   m_Component:
   - component: {fileID: 3554340584449528119}
   - component: {fileID: 4190107985737193232}
-  - component: {fileID: 7022624264320380287}
   m_Layer: 3
   m_Name: Hands
   m_TagString: Untagged
@@ -218,19 +201,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6995db6aa8879904f8ca434bf649953a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _characterHands: {fileID: 7022624264320380287}
---- !u!114 &7022624264320380287
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4540166318000530722}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b6f3a569f2514134299fceabd734e465, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _leftHand: {fileID: 2830214683827500545}

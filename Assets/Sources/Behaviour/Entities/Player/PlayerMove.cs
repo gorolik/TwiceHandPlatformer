@@ -1,12 +1,9 @@
 using Sources.Services.Input;
-using UnityEngine;
 
 namespace Sources.Behaviour.Entities.Player
 {
-    public class PlayerMove : MonoBehaviour
+    public class PlayerMove : CharacterMove
     {
-        [SerializeField] private CharacterMove _characterMove;
-
         private IInputService _inputService;
         
         public void Construct(IInputService inputService) => 
@@ -14,17 +11,21 @@ namespace Sources.Behaviour.Entities.Player
 
         public void Init()
         {
-            _inputService.JumpStart += _characterMove.TryStartJump;
-            _inputService.JumpEnd += _characterMove.EndJump;
+            _inputService.JumpStart += TryStartJump;
+            _inputService.JumpEnd += EndJump;
         }
 
         private void OnDestroy()
         {
-            _inputService.JumpStart -= _characterMove.TryStartJump;
-            _inputService.JumpEnd -= _characterMove.EndJump;
+            _inputService.JumpStart -= TryStartJump;
+            _inputService.JumpEnd -= EndJump;
         }
 
-        private void Update() => 
-            _characterMove.Move(_inputService.HorizontalAxis);
+        protected override void Update()
+        {
+            Move(_inputService.HorizontalAxis);
+            
+            base.Update();
+        }
     }
 }
