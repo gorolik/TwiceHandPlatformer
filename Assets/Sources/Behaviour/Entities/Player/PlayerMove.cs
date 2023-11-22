@@ -12,11 +12,17 @@ namespace Sources.Behaviour.Entities.Player
         public void Construct(IInputService inputService) => 
             _inputService = inputService;
 
-        public void Init() => 
-            _inputService.Jump += _characterMove.Jump;
+        public void Init()
+        {
+            _inputService.JumpStart += _characterMove.TryStartJump;
+            _inputService.JumpEnd += _characterMove.EndJump;
+        }
 
-        private void OnDestroy() => 
-            _inputService.Jump -= _characterMove.Jump;
+        private void OnDestroy()
+        {
+            _inputService.JumpStart -= _characterMove.TryStartJump;
+            _inputService.JumpEnd -= _characterMove.EndJump;
+        }
 
         private void Update() => 
             _characterMove.Move(_inputService.HorizontalAxis);

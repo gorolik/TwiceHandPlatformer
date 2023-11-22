@@ -10,6 +10,8 @@ namespace Sources.Behaviour.Level
         [Header("Player")]
         [SerializeField] private PlayerRoot _playerPrefab;
         [SerializeField] private Transform _playerSpawnPoint;
+        [Header("Scene")] 
+        [SerializeField] private Camera _camera;
         
         private IInputService _inputService;
         
@@ -23,7 +25,7 @@ namespace Sources.Behaviour.Level
         private void InitLevel()
         {
             PlayerRoot player = Instantiate(_playerPrefab, _playerSpawnPoint.position, Quaternion.identity);
-            player.Construct(_inputService);
+            player.Construct(_inputService, _camera);
             player.Init();
         }
     }

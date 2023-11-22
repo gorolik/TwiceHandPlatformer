@@ -1,5 +1,4 @@
-﻿using System;
-using Sources.Behaviour.Items;
+﻿using Sources.Behaviour.Items;
 using Sources.Services.Input;
 using UnityEngine;
 
@@ -8,7 +7,6 @@ namespace Sources.Behaviour.Entities.Player
     public class PlayerHands : MonoBehaviour
     {
         [SerializeField] private CharacterHands _characterHands;
-        private Item _testItemReference;
         
         private IInputService _inputService;
 
@@ -17,28 +15,17 @@ namespace Sources.Behaviour.Entities.Player
 
         public void Init()
         {
-            _inputService.PickUpItemInLeftHand += TryPickUpItemInLeftHand;
-            _inputService.PickUpItemInRightHand += TryPickUpItemInRightHand;
-
-            _testItemReference = FindObjectOfType<Item>(); // Временная замена механики поиска лута
+            _inputService.LeftFire += OnLeftFire;
+            _inputService.RightFire += OnRightFire;
+            
+            //_characterHands.TakeItemInRightHand(FindObjectOfType<Sword>()); // Временная замена механики применения лута к игроку в магазине или на старте игры
+            //_characterHands.TakeItemInLeftHand(FindObjectOfType<Shield>());
         }
 
-        private void Update() // Временный метод для проверки
-        {
-            if(Input.GetKeyDown(KeyCode.G))
-                _testItemReference.Drop();
-        }
+        private void OnLeftFire() => 
+            _characterHands.UseLeftHandItem();
 
-        private void OnDestroy()
-        {
-            _inputService.PickUpItemInLeftHand -= TryPickUpItemInLeftHand;
-            _inputService.PickUpItemInRightHand -= TryPickUpItemInRightHand;
-        }
-
-        private void TryPickUpItemInLeftHand() => 
-            _characterHands.TakeItemInLeftHand(_testItemReference);
-
-        private void TryPickUpItemInRightHand() => 
-            _characterHands.TakeItemInRightHand(_testItemReference);
+        private void OnRightFire() => 
+            _characterHands.UseRightHandItem();
     }
 }

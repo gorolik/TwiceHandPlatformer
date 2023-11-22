@@ -2,11 +2,11 @@
 
 namespace Sources.Behaviour.Items
 {
-    public class TestItem : Item
+    public class Shield : Item
     {
         public override void Use()
         {
-            Debug.Log(gameObject.name + " Used");
+            Debug.Log("Using " + gameObject.name);
         }
     }
 }

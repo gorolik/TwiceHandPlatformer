@@ -470,7 +470,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 77f67adfa2ffe2b48adfb3e6f193b1b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _rigidbody: {fileID: 483861637}
 --- !u!4 &483861639
 Transform:
   m_ObjectHideFlags: 0
@@ -1223,6 +1222,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _playerPrefab: {fileID: 8027323735859516162, guid: 06de3955df6d64941a123723a1e76a18, type: 3}
   _playerSpawnPoint: {fileID: 745106236}
+  _camera: {fileID: 519420031}
 --- !u!4 &1428330190
 Transform:
   m_ObjectHideFlags: 0
