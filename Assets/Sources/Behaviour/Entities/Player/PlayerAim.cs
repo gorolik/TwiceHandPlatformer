@@ -1,4 +1,5 @@
-﻿using Sources.Infrastructure.Extensions;
+﻿using System;
+using Sources.Infrastructure.Extensions;
 using Sources.Services.Input;
 using UnityEngine;
 
@@ -6,10 +7,8 @@ namespace Sources.Behaviour.Entities.Player
 {
     public class PlayerAim : MonoBehaviour
     {
-        private const int _aimAngleOffset = 180;
-
         [SerializeField] private CharacterViewDirection _characterViewDirection;
-        [SerializeField] private Transform[] _toAim;
+        [SerializeField] private AimGroup[] _aimGroups;
         
         private IInputService _inputService;
         private Camera _camera;
@@ -30,8 +29,15 @@ namespace Sources.Behaviour.Entities.Player
 
         private void RotateAimObjectToMousePointer(Vector2 aimPoint)
         {
-            foreach (Transform toAim in _toAim)
-                toAim.LookAt2D(aimPoint, _aimAngleOffset);
+            foreach (AimGroup group in _aimGroups)
+                group.ToAim.LookAt2D(aimPoint, group.AngleOffset);
+        }
+        
+        [Serializable]
+        private struct AimGroup
+        {
+            public Transform ToAim;
+            public float AngleOffset;
         }
     }
 }

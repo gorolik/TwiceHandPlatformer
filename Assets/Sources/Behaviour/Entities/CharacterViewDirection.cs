@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 namespace Sources.Behaviour.Entities
 {
@@ -11,18 +12,18 @@ namespace Sources.Behaviour.Entities
         private Direction _direction;
         
         public Direction LookDirection => _direction;
-        
+
+        public event Action<Direction> DirectionChanged;
+
         public void SetCharacterViewToLookDirection(float xLookPoint)
         {
-            if (xLookPoint > transform.position.x && _direction != Direction.Right)
+            Direction newDirection = xLookPoint > transform.position.x ? Direction.Right : Direction.Left;
+
+            if (_direction != newDirection)
             {
-                _characterView.localScale = new Vector2(1, _characterView.localScale.y);
-                _direction = Direction.Right;
-            }
-            else if (xLookPoint < transform.position.x && _direction != Direction.Left)
-            {
-                _characterView.localScale = new Vector2(-1, _characterView.localScale.y);
-                _direction = Direction.Left;
+                _characterView.localScale = new Vector2(newDirection == Direction.Right ? 1 : -1, _characterView.localScale.y);
+                _direction = newDirection;
+                DirectionChanged?.Invoke(_direction);
             }
         }
     }

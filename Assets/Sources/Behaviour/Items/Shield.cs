@@ -4,9 +4,14 @@ namespace Sources.Behaviour.Items
 {
     public class Shield : Item
     {
-        public override void Use()
+        public override void UseBegin()
         {
-            Debug.Log("Using " + gameObject.name);
+            throw new System.NotImplementedException();
+        }
+
+        public override void UseEnd()
+        {
+            throw new System.NotImplementedException();
         }
     }
 }

@@ -9,10 +9,15 @@ namespace Sources.Services.Input
     {
         float HorizontalAxis { get; }
         Vector2 MousePosition { get; }
+        
         event Action JumpStart;
-        event Action LeftFire;
-        event Action RightFire;
-        event Action Ability;
         event Action JumpEnd;
+        
+        event Action LeftFireDown;
+        event Action LeftFireUp;
+        event Action RightFireDown;
+        event Action RightFireUp;
+        
+        event Action Ability;
     }
 }

@@ -11,9 +11,12 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="HighlightingSettingsPerFile">
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/44c555c8e7704b01b3778d8db4ae902827800/17/e5672687/Animator.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/../../../ASSETS/Профессионалы 2023/Региональный этап/Govorkov/Assets/Scripts/DataBase/DataBase.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/../Armored Tanks/Assets/Scripts/Special/Extensions.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/../Breakthrough/Assets/Sources/Items/Item.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/../Breakthrough/Assets/Sources/Items/Throwable.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/../Breakthrough/Assets/Sources/Items/Weapon.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/../Flying Intruders/Assets/Sources/Behaviour/Enemy/EnemyAnimator.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Sources/Infrastructure/DI/AllServices.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Sources/Infrastructure/DI/IService.cs" root0="SKIP_HIGHLIGHTING" />
@@ -94,7 +97,9 @@
       <updated>1700562700664</updated>
       <workItem from="1700562702299" duration="9603000" />
       <workItem from="1700629306572" duration="4519000" />
-      <workItem from="1700635209545" duration="11421000" />
+      <workItem from="1700635209545" duration="12294000" />
+      <workItem from="1700718814012" duration="2000" />
+      <workItem from="1700718822814" duration="11266000" />
     </task>
     <servers />
   </component>

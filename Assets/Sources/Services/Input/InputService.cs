@@ -13,21 +13,28 @@ namespace Sources.Services.Input
         
         public float HorizontalAxis { get; private set; }
         public Vector2 MousePosition { get; private set; }
+        
         public event Action JumpStart;
         public event Action JumpEnd;
-        public event Action LeftFire;
-        public event Action RightFire;
+        
+        public event Action LeftFireDown;
+        public event Action LeftFireUp;
+        public event Action RightFireDown;
+        public event Action RightFireUp;
+        
         public event Action Ability;
         
         public void Update()
         {
             UpdateHorizontalAxis();
             UpdateMousePosition();
-            TryStartJump();
-            TryEndJump();
-            TryLeftFire();
-            TryRightFire();
-            TryAbility();
+            
+            JumpInput();
+
+            RightFireInput();
+            LeftFireInput();
+
+            AbilityInput();
         }
 
         private void UpdateHorizontalAxis() => 
@@ -36,31 +43,31 @@ namespace Sources.Services.Input
         private void UpdateMousePosition() => 
             MousePosition = UnityEngine.Input.mousePosition;
 
-        private void TryStartJump()
+        private void JumpInput()
         {
             if (UnityEngine.Input.GetButtonDown(_jumpButton))
                 JumpStart?.Invoke();
-        }
-        
-        private void TryEndJump()
-        {
-            if (UnityEngine.Input.GetButtonUp(_jumpButton))
+            else if (UnityEngine.Input.GetButtonUp(_jumpButton))
                 JumpEnd?.Invoke();
         }
 
-        private void TryLeftFire()
+        private void RightFireInput()
         {
-            if(UnityEngine.Input.GetButton(_leftMouseButton))
-                LeftFire?.Invoke();
+            if(UnityEngine.Input.GetButtonDown(_rightMouseButton))
+                RightFireDown?.Invoke();
+            else if(UnityEngine.Input.GetButtonUp(_rightMouseButton))
+                RightFireUp?.Invoke();
         }
 
-        private void TryRightFire()
+        private void LeftFireInput()
         {
-            if(UnityEngine.Input.GetButton(_rightMouseButton))
-                RightFire?.Invoke();
+            if(UnityEngine.Input.GetButtonDown(_leftMouseButton))
+                LeftFireDown?.Invoke();
+            else if(UnityEngine.Input.GetButtonUp(_leftMouseButton))
+                LeftFireUp?.Invoke();
         }
 
-        private void TryAbility()
+        private void AbilityInput()
         {
             if(UnityEngine.Input.GetButton(_abilityButton))
                 Ability?.Invoke();
