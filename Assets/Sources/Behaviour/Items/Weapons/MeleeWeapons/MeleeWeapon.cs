@@ -1,41 +1,47 @@
-﻿using Sources.Behaviour.Entities;
+﻿using System.Collections.Generic;
+using Sources.Behaviour.Entities;
 using UnityEngine;
 
 namespace Sources.Behaviour.Items.Weapons.MeleeWeapons
 {
     public class MeleeWeapon : Item
     {
+        [Header("Settings")]
+        [SerializeField] private float _damage = 10;
         [SerializeField] private ComboData _comboData;
-
-        [SerializeField] private MeleeWeaponAnimator _animator;
         
+        [Header("Links")]
+        [SerializeField] private TrailRenderer _trail;
+
+        [SerializeField] private Hitbox _hitbox;
+        [SerializeField] private MeleeWeaponAnimator _animator;
+
+        private ImpactEventHandler _eventHandler;
+        private List<Hurtbox> _attacked = new List<Hurtbox>();
+
         private int _comboStage;
         private float _comboContinueTimer;
         private float _stageDelayTimer;
-        
-        protected override void OnTaken(CharacterHand hand) => 
+
+        protected override void OnTaken(CharacterHand hand)
+        {
             _animator.Init(hand.Animator);
+            _eventHandler = hand.EventHandler;
+
+            _eventHandler.ImpactStateChanged += AttackStateChanged;
+            _hitbox.Hit += OnHit;
+        }
+
+        protected override void OnDroped()
+        {
+            _eventHandler.ImpactStateChanged -= AttackStateChanged;
+            _hitbox.Hit -= OnHit;
+        }
 
         private void Update()
         {
-            if (_comboContinueTimer > 0)
-            {
-                _comboContinueTimer -= Time.deltaTime;
-
-                if (_comboContinueTimer <= 0)
-                {
-                    _comboContinueTimer = 0;
-                    ResetCombo();
-                }
-            }
-
-            if (_stageDelayTimer > 0)
-            {
-                _stageDelayTimer -= Time.deltaTime;
-
-                if (_stageDelayTimer < 0)
-                    _stageDelayTimer = 0;
-            }
+            UpdateComboContinueTimer();
+            UpdateStageDelayTimer();
         }
 
         public override void UseBegin()
@@ -46,28 +52,35 @@ namespace Sources.Behaviour.Items.Weapons.MeleeWeapons
             if (ComboEnd()) 
                 ResetCombo();
             else
-            {
-                ComboData.Stage stage = _comboData.Stages[_comboStage];
-
-                HitScan();
-                _animator.SetStage(_comboStage + 1);
-                
-                _stageDelayTimer = stage.ContinueDelay;
-                _comboContinueTimer = stage.ContinueTime;
-                
-                _comboStage++;
-            }
-        }
-
-        private void HitScan()
-        {
-            Debug.Log("HitScan");
+                ContinueCombo();
         }
 
         public override void UseEnd() { }
 
-        private bool ComboEnd() => 
-            _comboStage >= _comboData.Stages.Length;
+        public void OnHit(Hurtbox hurtbox)
+        {
+            if (!_attacked.Contains(hurtbox))
+            {
+                ComboData.Stage stage = _comboData.Stages[_comboStage];
+                
+                float damage = _damage * stage.DamageRatio;
+                hurtbox.TakeDamage(damage);
+                
+                hurtbox.Push(stage.PushForce, hurtbox.transform.position - transform.position);
+                
+                _attacked.Add(hurtbox);
+            }
+        }
+
+        private void ContinueCombo()
+        {
+            ComboData.Stage stage = _comboData.Stages[_comboStage];
+
+            _animator.SetStage(_comboStage + 1);
+
+            _stageDelayTimer = stage.ContinueDelay;
+            _comboContinueTimer = stage.ContinueTime;
+        }
 
         private void ResetCombo()
         {
@@ -75,6 +88,37 @@ namespace Sources.Behaviour.Items.Weapons.MeleeWeapons
             _stageDelayTimer = 0;
             _comboContinueTimer = 0;
             _animator.SetStage(0);
+        }
+
+        private bool ComboEnd() => 
+            _comboStage >= _comboData.Stages.Length;
+
+        private void AttackStateChanged(bool isAttack)
+        {
+            _attacked.Clear();
+            
+            _hitbox.SetColliderEnabled(isAttack);
+            _trail.emitting = isAttack;
+
+            if (!isAttack)
+                _comboStage++;
+        }
+        
+        private void UpdateStageDelayTimer()
+        {
+            if (_stageDelayTimer > 0) 
+                _stageDelayTimer -= Time.deltaTime;
+        }
+
+        private void UpdateComboContinueTimer()
+        {
+            if (_comboContinueTimer > 0)
+            {
+                _comboContinueTimer -= Time.deltaTime;
+
+                if (_comboContinueTimer <= 0) 
+                    ResetCombo();
+            }
         }
     }
 }

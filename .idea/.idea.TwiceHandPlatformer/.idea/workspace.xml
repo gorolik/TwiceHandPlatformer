@@ -18,6 +18,7 @@
     <setting file="file://$PROJECT_DIR$/../Breakthrough/Assets/Sources/Items/Throwable.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/../Breakthrough/Assets/Sources/Items/Weapon.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/../Flying Intruders/Assets/Sources/Behaviour/Enemy/EnemyAnimator.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/../Flying Intruders/Assets/Sources/Infrastructure/GameStateMachine.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Sources/Infrastructure/DI/AllServices.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Sources/Infrastructure/DI/IService.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
@@ -99,7 +100,9 @@
       <workItem from="1700629306572" duration="4519000" />
       <workItem from="1700635209545" duration="12294000" />
       <workItem from="1700718814012" duration="2000" />
-      <workItem from="1700718822814" duration="11266000" />
+      <workItem from="1700718822814" duration="12638000" />
+      <workItem from="1700735326828" duration="29000" />
+      <workItem from="1700805057980" duration="12044000" />
     </task>
     <servers />
   </component>

@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 2117403885426645705}
   - component: {fileID: 8612594948091417196}
   - component: {fileID: 1382057565910409313}
+  - component: {fileID: 1945127345216032381}
   m_Layer: 0
   m_Name: RightArmView
   m_TagString: Untagged
@@ -95,7 +96,7 @@ Animator:
   m_GameObject: {fileID: 1931611416468180697}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 1f55c21d8abde4b449be88d23df11f6e, type: 2}
+  m_Controller: {fileID: 0}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -106,6 +107,18 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &1945127345216032381
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1931611416468180697}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4fa5bdbef87328a40945c78fba94a0c7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &3005183374229783634
 GameObject:
   m_ObjectHideFlags: 0
@@ -156,8 +169,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eaa591c7f98008c48a8e728429e4b81f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _startLeftHandItem: {fileID: 0}
-  _startRightHandItem: {fileID: 833672192769230593, guid: 1add98fed2edb984a858560b1e48913f, type: 3}
+  _startLeftHandItem: {fileID: 7951021434961420534, guid: d8dd46d317251bb4d8349f1b6af3c904, type: 3}
+  _startRightHandItem: {fileID: 5511870225184107717, guid: c67ed86736c80c04e9f7119d61114535, type: 3}
   _move: {fileID: 6804473143976696684}
   _hands: {fileID: 4190107985737193232}
   _aim: {fileID: 7735812926867772389}
@@ -392,6 +405,7 @@ GameObject:
   - component: {fileID: 4635081254827549048}
   - component: {fileID: 8176781753089843667}
   - component: {fileID: 8923248474069962550}
+  - component: {fileID: 6535805334429408780}
   m_Layer: 0
   m_Name: LeftArmView
   m_TagString: Untagged
@@ -487,6 +501,18 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &6535805334429408780
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6686954987263223284}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4fa5bdbef87328a40945c78fba94a0c7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &853910351859774387
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -628,6 +654,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _characterViewDirection: {fileID: 2997698147182900571}
   _itemParent: {fileID: 4635081254827549048}
+  _eventHandler: {fileID: 6535805334429408780}
   _animator: {fileID: 8923248474069962550}
 --- !u!1 &882280218134303246 stripped
 GameObject:
@@ -702,4 +729,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _characterViewDirection: {fileID: 2997698147182900571}
   _itemParent: {fileID: 2117403885426645705}
+  _eventHandler: {fileID: 1945127345216032381}
   _animator: {fileID: 1382057565910409313}

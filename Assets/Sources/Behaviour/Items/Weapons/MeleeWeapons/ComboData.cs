@@ -11,6 +11,7 @@ namespace Sources.Behaviour.Items.Weapons.MeleeWeapons
         public class Stage
         {
             public float DamageRatio = 1;
+            public float PushForce = 0;
             public float ContinueDelay = 0.2f;
             public float ContinueTime = 0.4f;
         }
