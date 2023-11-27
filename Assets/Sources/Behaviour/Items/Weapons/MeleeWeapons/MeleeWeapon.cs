@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using Sources.Behaviour.Entities;
+using Sources.Behaviour.Entities.HealthSystem;
 using UnityEngine;
 
 namespace Sources.Behaviour.Items.Weapons.MeleeWeapons
@@ -17,7 +18,7 @@ namespace Sources.Behaviour.Items.Weapons.MeleeWeapons
         [SerializeField] private MeleeWeaponAnimator _animator;
 
         private ImpactEventHandler _eventHandler;
-        private List<Hurtbox> _attacked = new List<Hurtbox>();
+        private List<Health> _attacked = new List<Health>();
 
         private int _comboStage;
         private float _comboContinueTimer;
@@ -59,16 +60,18 @@ namespace Sources.Behaviour.Items.Weapons.MeleeWeapons
 
         public void OnHit(Hurtbox hurtbox)
         {
-            if (!_attacked.Contains(hurtbox))
+            Health health = hurtbox.Health;
+            
+            if (!_attacked.Contains(health))
             {
                 ComboData.Stage stage = _comboData.Stages[_comboStage];
                 
                 float damage = _damage * stage.DamageRatio;
-                hurtbox.TakeDamage(damage);
+                health.TakeDamage(damage);
                 
                 hurtbox.Push(stage.PushForce, hurtbox.transform.position - transform.position);
                 
-                _attacked.Add(hurtbox);
+                _attacked.Add(health);
             }
         }
 

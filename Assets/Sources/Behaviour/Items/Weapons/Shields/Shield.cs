@@ -1,4 +1,5 @@
 ﻿using Sources.Behaviour.Entities;
+using Sources.Behaviour.Entities.HealthSystem;
 using UnityEngine;
 
 namespace Sources.Behaviour.Items.Weapons.Shields

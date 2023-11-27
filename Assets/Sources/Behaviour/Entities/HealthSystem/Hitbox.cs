@@ -1,8 +1,7 @@
 ﻿using System;
-using Sources.Behaviour.Entities;
 using UnityEngine;
 
-namespace Sources.Behaviour
+namespace Sources.Behaviour.Entities.HealthSystem
 {
     public class Hitbox : MonoBehaviour
     {

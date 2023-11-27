@@ -553,6 +553,7 @@ GameObject:
   m_Component:
   - component: {fileID: 501151413}
   - component: {fileID: 501151414}
+  - component: {fileID: 501151415}
   m_Layer: 0
   m_Name: Dummy
   m_TagString: Untagged
@@ -589,7 +590,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1
+  m_Mass: 30
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 1
@@ -602,8 +603,23 @@ Rigidbody2D:
     m_Bits: 0
   m_Interpolate: 1
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 4
+--- !u!114 &501151415
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 501151412}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b0b6a20f622434e4b9f87d18d4448979, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _value: 50
+  _maxValue: 50
+  _rootObject: {fileID: 501151412}
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -1431,6 +1447,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 779cb84d2c243844a8e09dc862e30641, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _health: {fileID: 501151415}
   _rigidbody: {fileID: 501151414}
 --- !u!1 &1428330188
 GameObject:

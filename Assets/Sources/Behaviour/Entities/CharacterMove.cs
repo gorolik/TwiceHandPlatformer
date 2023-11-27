@@ -1,14 +1,20 @@
-﻿using UnityEngine;
+﻿using Sources.Behaviour.Entities.CharacterParameters;
+using TMPro;
+using UnityEngine;
 
 namespace Sources.Behaviour.Entities
 {
     public abstract class CharacterMove : MonoBehaviour
     {
         private const float _jumpRoughness = 8;
+        private const float _massInfluence = 10;
+        private const float _massOffset = 50;
+        private const float _minSpeed = 1;
         
-        [SerializeField] private float _moveSpeed = 7;
-        [SerializeField] private float _jumpForce = 13;
+        [SerializeField] private float _moveSpeed = 14;
+        [SerializeField] private float _jumpForce = 1300;
         [SerializeField] private Rigidbody2D _rigidbody;
+        [SerializeField] private CharacterData _characterData;
         [SerializeField] private GroundChecker _groundChecker;
         [SerializeField] private CharacterAnimator _characterAnimator;
         [SerializeField] private CharacterViewDirection _characterViewDirection;
@@ -17,6 +23,7 @@ namespace Sources.Behaviour.Entities
         private enum State { Stay, Walking, Falling }
 
         private float _jumpMargin;
+        private int _jumps;
         private bool _jumping;
         private State _state;
 
@@ -31,15 +38,23 @@ namespace Sources.Behaviour.Entities
             horizontal = Mathf.Clamp(horizontal, -1, 1);
             
             Vector2 direction = new Vector2(horizontal, 0);
-            _rigidbody.velocity = new Vector2(direction.x * _moveSpeed, _rigidbody.velocity.y);
+            float speed = Mathf.Clamp(_moveSpeed - (_characterData.Weight.CurrentValue - _massOffset) / _massInfluence, _minSpeed, float.MaxValue);
+            
+            _rigidbody.velocity = new Vector2(direction.x * speed, _rigidbody.velocity.y);
         }
         
         protected void TryStartJump()
         {
-            if (_jumping == false && _groundChecker.IsGrounded())
+            if (CanJump())
             {
+                if(_state != State.Falling)
+                    _jumps = _characterData.JumpsCount.CurrentValue;
+                
+                _jumps--;
                 _jumpMargin = _jumpForce;
                 _jumping = true;
+
+                _rigidbody.velocity = new Vector2(_rigidbody.velocity.x, 0);
                 
                 _characterAnimator.Jump();
             }
@@ -49,8 +64,6 @@ namespace Sources.Behaviour.Entities
         {
             if (_jumping)
             {
-                //_rigidbody.velocity = new Vector2(_rigidbody.velocity.x, _rigidbody.velocity.y / _jumpReleaseMod);
-                
                 _jumpMargin = 0;
                 _jumping = false;
             }
@@ -58,9 +71,10 @@ namespace Sources.Behaviour.Entities
 
         private void JumpUpdate()
         {
-            if(_jumping && _jumpMargin > 0) 
+            if(_jumping && _jumpMargin > 0)
             {
                 _rigidbody.AddForce(new Vector2(0, _jumpForce * _jumpRoughness * Time.deltaTime), ForceMode2D.Impulse);
+                
                 _jumpMargin -= _jumpForce * _jumpRoughness * Time.deltaTime;
 
                 if (_jumpMargin <= 0) 
@@ -68,10 +82,21 @@ namespace Sources.Behaviour.Entities
             }
         }
 
-        private void Grounded()
+        private void OnGrounded()
         {
+            _jumps = 0;
             EndJump();
             _characterAnimator.Grounded();
+        }
+
+        private bool CanJump()
+        {
+            if (_jumping == false && _groundChecker.IsGrounded())
+                return true;
+            else if(_jumps > 0)
+                return true;
+            else
+                return false;
         }
 
         private void SetMovementState()
@@ -94,7 +119,7 @@ namespace Sources.Behaviour.Entities
         private void HandleGroundedState()
         {
             if (_state == State.Falling) 
-                Grounded();
+                OnGrounded();
 
             if (Mathf.Abs(_rigidbody.velocity.x) > 0)
                 HandleWalkingState();

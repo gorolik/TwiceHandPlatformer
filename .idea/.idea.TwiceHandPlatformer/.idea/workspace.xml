@@ -18,7 +18,10 @@
     <setting file="file://$PROJECT_DIR$/../Breakthrough/Assets/Sources/Items/Throwable.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/../Breakthrough/Assets/Sources/Items/Weapon.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/../Flying Intruders/Assets/Sources/Behaviour/Enemy/EnemyAnimator.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/../Flying Intruders/Assets/Sources/Behaviour/HealthSystem/Health.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/../Flying Intruders/Assets/Sources/Behaviour/HealthSystem/IHealth.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/../Flying Intruders/Assets/Sources/Infrastructure/GameStateMachine.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/../SGJ Nov 2023/Assets/_Scripts/Monster/MonsterController.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Sources/Infrastructure/DI/AllServices.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Sources/Infrastructure/DI/IService.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
@@ -102,7 +105,8 @@
       <workItem from="1700718814012" duration="2000" />
       <workItem from="1700718822814" duration="12638000" />
       <workItem from="1700735326828" duration="29000" />
-      <workItem from="1700805057980" duration="12044000" />
+      <workItem from="1700805057980" duration="12578000" />
+      <workItem from="1701069071387" duration="8231000" />
     </task>
     <servers />
   </component>
