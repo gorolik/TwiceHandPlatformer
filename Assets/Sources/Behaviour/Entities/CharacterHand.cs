@@ -1,4 +1,5 @@
-﻿using Sources.Behaviour.Items;
+﻿using Sources.Behaviour.Entities.CharacterParameters;
+using Sources.Behaviour.Items;
 using UnityEngine;
 
 namespace Sources.Behaviour.Entities
@@ -9,6 +10,7 @@ namespace Sources.Behaviour.Entities
         [SerializeField] private Transform _itemParent;
         [SerializeField] private ImpactEventHandler _eventHandler;
         [SerializeField] private Animator _animator;
+        [SerializeField] private CharacterData _characterData;
         
         private Item _item;
 
@@ -33,16 +35,26 @@ namespace Sources.Behaviour.Entities
                 _item.UseEnd();
         }
         
-        public void TakeItem(Item item)
+        public void TryTakeItem(Item item)
         {
             if(item.Taken)
                 return;
             
-            if (_item != null) 
-                _item.Drop();
+            TryDropItem();
 
             _item = item;
             item.Take(_itemParent, this);
+            
+            _characterData.Weight.AddBonus(item.Weight);
+        }
+
+        private void TryDropItem()
+        {
+            if (_item == null)
+                return;
+
+            _characterData.Weight.AddBonus(-_item.Weight);
+            _item.Drop();
         }
         
         private void SyncDirection(CharacterViewDirection.Direction direction)

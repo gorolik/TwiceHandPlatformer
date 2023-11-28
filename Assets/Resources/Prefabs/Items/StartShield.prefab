@@ -313,6 +313,14 @@ PrefabInstance:
       value: StartShield
       objectReference: {fileID: 0}
     - target: {fileID: 4959448939635358007, guid: 485b6e33daa29314183a7fc3a33dda8a, type: 3}
+      propertyPath: _weight
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 4959448939635358007, guid: 485b6e33daa29314183a7fc3a33dda8a, type: 3}
+      propertyPath: _pushForce
+      value: 250
+      objectReference: {fileID: 0}
+    - target: {fileID: 4959448939635358007, guid: 485b6e33daa29314183a7fc3a33dda8a, type: 3}
       propertyPath: _pushCooldown
       value: 0.3
       objectReference: {fileID: 0}

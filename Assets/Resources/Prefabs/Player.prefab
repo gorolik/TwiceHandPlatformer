@@ -718,6 +718,7 @@ MonoBehaviour:
   _itemParent: {fileID: 4635081254827549048}
   _eventHandler: {fileID: 6535805334429408780}
   _animator: {fileID: 8923248474069962550}
+  _characterData: {fileID: 530894073973859926}
 --- !u!1 &882280218134303246 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: -8653719598885068355, guid: a037daadb562dc3499ff9deb78439749, type: 3}
@@ -793,3 +794,4 @@ MonoBehaviour:
   _itemParent: {fileID: 2117403885426645705}
   _eventHandler: {fileID: 1945127345216032381}
   _animator: {fileID: 1382057565910409313}
+  _characterData: {fileID: 530894073973859926}

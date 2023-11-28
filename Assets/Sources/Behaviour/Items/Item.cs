@@ -5,12 +5,14 @@ namespace Sources.Behaviour.Items
 {
     public abstract class Item : MonoBehaviour
     {
-        [Header("Item")]
+        [Header("Item")] 
+        [SerializeField] private float _weight = 5;
         [SerializeField] private Rigidbody2D _rigidbody;
         
         private bool _taken;
 
         public bool Taken => _taken;
+        public float Weight => _weight;
 
         public abstract void UseBegin();
         public abstract void UseEnd();

@@ -93,6 +93,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 7629807225167412413}
     - target: {fileID: 7338513866930672821, guid: 130ac36c6c2a97347a4d0a306d5571a1, type: 3}
+      propertyPath: _weight
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7338513866930672821, guid: 130ac36c6c2a97347a4d0a306d5571a1, type: 3}
       propertyPath: _animator
       value: 
       objectReference: {fileID: 9043809647485859758}

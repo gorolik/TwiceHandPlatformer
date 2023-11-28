@@ -27,9 +27,9 @@ namespace Sources.Behaviour.Entities.Player
             _hands.Init();
 
             if (_startRightHandItem != null)
-                _hands.RightHand.TakeItem(Instantiate(_startRightHandItem));
+                _hands.RightHand.TryTakeItem(Instantiate(_startRightHandItem));
             if (_startLeftHandItem != null)
-                _hands.LeftHand.TakeItem(Instantiate(_startLeftHandItem));
+                _hands.LeftHand.TryTakeItem(Instantiate(_startLeftHandItem));
         }
     }
 }
