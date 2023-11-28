@@ -1,6 +1,7 @@
 ﻿using Sources.Behaviour.Entities.CharacterParameters;
-using TMPro;
+using Sources.Behaviour.Entities.HealthSystem;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace Sources.Behaviour.Entities
 {
@@ -16,6 +17,7 @@ namespace Sources.Behaviour.Entities
         [SerializeField] private Rigidbody2D _rigidbody;
         [SerializeField] private CharacterData _characterData;
         [SerializeField] private GroundChecker _groundChecker;
+        [FormerlySerializedAs("_overCharacterChecker")] [SerializeField] private BounceOverCharacter _bounceOverCharacter;
         [SerializeField] private CharacterAnimator _characterAnimator;
         [SerializeField] private CharacterViewDirection _characterViewDirection;
 
@@ -95,6 +97,11 @@ namespace Sources.Behaviour.Entities
                 return true;
             else if(_jumps > 0)
                 return true;
+            else if (_bounceOverCharacter.TryBounceOverCharacter())
+            {
+                _jumps = Mathf.Clamp(_jumps + 1, 0, _characterData.JumpsCount.CurrentValue);
+                return true;
+            }
             else
                 return false;
         }
