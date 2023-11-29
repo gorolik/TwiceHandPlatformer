@@ -13,7 +13,6 @@ namespace Sources.Behaviour.Items.Weapons.MeleeWeapons
         
         [Header("Links")]
         [SerializeField] private TrailRenderer _trail;
-
         [SerializeField] private Hitbox _hitbox;
         [SerializeField] private MeleeWeaponAnimator _animator;
 

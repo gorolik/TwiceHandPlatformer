@@ -6,12 +6,13 @@ namespace Sources.Behaviour.Entities
 {
     public class CharacterHand : MonoBehaviour
     {
+        [SerializeField] private CharacterData _characterData;
         [SerializeField] private CharacterViewDirection _characterViewDirection;
-        [SerializeField] private Transform _itemParent;
         [SerializeField] private ImpactEventHandler _eventHandler;
         [SerializeField] private Animator _animator;
-        [SerializeField] private CharacterData _characterData;
-        
+        [SerializeField] private Transform _itemParent;
+        [SerializeField] private Transform _handTransform;
+
         private Item _item;
 
         public Animator Animator => _animator;
@@ -60,9 +61,9 @@ namespace Sources.Behaviour.Entities
         private void SyncDirection(CharacterViewDirection.Direction direction)
         {
             if (direction == CharacterViewDirection.Direction.Right) 
-                transform.localScale = new Vector2(1, 1);
+                _handTransform.localScale = new Vector2(1, 1);
             else
-                transform.localScale = new Vector2(-1, -1);
+                _handTransform.localScale = new Vector2(-1, -1);
         }
     }
 }

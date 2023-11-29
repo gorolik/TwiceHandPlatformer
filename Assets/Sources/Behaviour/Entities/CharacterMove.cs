@@ -95,13 +95,13 @@ namespace Sources.Behaviour.Entities
         {
             if (_jumping == false && _groundChecker.IsGrounded())
                 return true;
-            else if(_jumps > 0)
-                return true;
             else if (_bounceOverCharacter.TryBounceOverCharacter())
             {
-                _jumps = Mathf.Clamp(_jumps + 1, 0, _characterData.JumpsCount.CurrentValue);
+                _jumps = Mathf.Clamp(_jumps + 2, 0, _characterData.JumpsCount.CurrentValue);
                 return true;
             }
+            else if(_jumps > 0)
+                return true;
             else
                 return false;
         }
