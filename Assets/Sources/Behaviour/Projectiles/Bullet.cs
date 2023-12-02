@@ -1,14 +1,19 @@
-﻿using UnityEngine;
+﻿using Sources.Behaviour.Entities.HealthSystem;
+using UnityEngine;
 
 namespace Sources.Behaviour.Projectiles
 {
     public class Bullet : Projectile
     {
         [SerializeField] private LayerMask _layerMask;
-        [SerializeField] private float _speed = 10;
-        
+        [SerializeField] private float _speed = 30;
+
+        private float _damage;
         private Vector2 _previousPosition;
         private bool _isCollided;
+
+        public void Init(float damage) => 
+            _damage = damage;
 
         private void Update()
         {
@@ -25,6 +30,8 @@ namespace Sources.Behaviour.Projectiles
             {
                 transform.position = hit.point;
 
+                TryDamage(hit.collider);
+                
                 _isCollided = true;
                 Destroy(gameObject);
             }
@@ -44,6 +51,12 @@ namespace Sources.Behaviour.Projectiles
             hit = Physics2D.Raycast(transform.position, direction, distance, _layerMask);
             
             return hit.collider != null;
+        }
+
+        private void TryDamage(Collider2D hitCollider)
+        {
+            if(hitCollider.TryGetComponent(out Hurtbox hurtbox))
+                hurtbox.Health.TakeDamage(_damage);
         }
     }
 }

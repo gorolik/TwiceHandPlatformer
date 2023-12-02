@@ -237,7 +237,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _startLeftHandItem: {fileID: 7951021434961420534, guid: d8dd46d317251bb4d8349f1b6af3c904, type: 3}
-  _startRightHandItem: {fileID: 1528040106774946689, guid: f793893620b2ec34889ff52ee9f56149, type: 3}
+  _startRightHandItem: {fileID: -6153001307636254431, guid: 17f46dd985dad4a4898c1c0b8ef57b5d, type: 3}
   _move: {fileID: 6804473143976696684}
   _hands: {fileID: 4190107985737193232}
   _aim: {fileID: 7735812926867772389}

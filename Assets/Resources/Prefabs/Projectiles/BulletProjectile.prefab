@@ -127,7 +127,7 @@ GameObject:
   - component: {fileID: 7031551347064197936}
   - component: {fileID: -8987127864630726008}
   m_Layer: 0
-  m_Name: TestProjectile
+  m_Name: BulletProjectile
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -164,4 +164,4 @@ MonoBehaviour:
   _layerMask:
     serializedVersion: 2
     m_Bits: 129
-  _speed: 10
+  _speed: 70
