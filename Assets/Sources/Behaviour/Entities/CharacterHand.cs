@@ -1,4 +1,5 @@
 ﻿using Sources.Behaviour.Entities.CharacterParameters;
+using Sources.Behaviour.Entities.HealthSystem;
 using Sources.Behaviour.Items;
 using UnityEngine;
 
@@ -12,11 +13,13 @@ namespace Sources.Behaviour.Entities
         [SerializeField] private Animator _animator;
         [SerializeField] private Transform _itemParent;
         [SerializeField] private Transform _handTransform;
+        [SerializeField] private Health _selfHealth;
 
         private Item _item;
 
         public Animator Animator => _animator;
         public ImpactEventHandler EventHandler => _eventHandler;
+        public Health SelfHealth => _selfHealth;
 
         private void OnEnable() => 
             _characterViewDirection.DirectionChanged += SyncDirection;

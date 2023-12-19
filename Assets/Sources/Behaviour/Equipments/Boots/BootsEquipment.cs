@@ -2,7 +2,7 @@
 
 namespace Sources.Behaviour.Equipments.Boots
 {
-    public abstract class BootsEquipment : Equipment
+    public class BootsEquipment : Equipment
     {
         [SerializeField] private Transform _leftBoot;
         [SerializeField] private Transform _rightBoot;

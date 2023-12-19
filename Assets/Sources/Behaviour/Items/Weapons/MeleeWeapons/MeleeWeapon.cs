@@ -30,6 +30,8 @@ namespace Sources.Behaviour.Items.Weapons.MeleeWeapons
 
             _eventHandler.ImpactStateChanged += AttackStateChanged;
             _hitbox.Hit += OnHit;
+            
+            _hitbox.SetSelfHealth(hand.SelfHealth);
         }
 
         protected override void OnDroped()

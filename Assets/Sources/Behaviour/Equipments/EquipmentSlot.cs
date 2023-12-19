@@ -15,6 +15,7 @@ namespace Sources.Behaviour.Equipments
             if (_equipment != null)
                 UnEquip();
 
+            equipment.Init();
             equipment.Equip(_characterData);
             _equipment = equipment;
 

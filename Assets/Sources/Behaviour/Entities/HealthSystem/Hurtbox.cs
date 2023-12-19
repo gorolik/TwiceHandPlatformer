@@ -9,7 +9,10 @@ namespace Sources.Behaviour.Entities.HealthSystem
         
         public Health Health => _health;
 
-        public void Push(float force, Vector2 direction) => 
-            _rigidbody.AddForce(force * direction, ForceMode2D.Impulse);
+        public void Push(float force, Vector2 direction)
+        {
+            if(_rigidbody != null)
+                _rigidbody.AddForce(force * direction, ForceMode2D.Impulse);
+        }
     }
 }

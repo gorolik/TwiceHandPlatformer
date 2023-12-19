@@ -23,11 +23,12 @@ namespace Sources.Behaviour.Items.Weapons.Shields
         protected override void OnTaken(CharacterHand hand)
         {
             _animator.Init(hand.Animator);
-
             _eventHandler = hand.EventHandler;
             
             _eventHandler.ImpactStateChanged += AttackStateChanged;
             _hitbox.Hit += OnHit;
+
+            _hitbox.SetSelfHealth(hand.SelfHealth);
         }
 
         protected override void OnDroped()

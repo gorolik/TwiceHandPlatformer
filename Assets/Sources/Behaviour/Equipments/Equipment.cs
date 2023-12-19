@@ -1,4 +1,5 @@
 ﻿using Sources.Behaviour.Entities.CharacterParameters;
+using Sources.Behaviour.Equipments.Bonuses;
 using UnityEngine;
 
 namespace Sources.Behaviour.Equipments
@@ -7,21 +8,27 @@ namespace Sources.Behaviour.Equipments
     {
         [SerializeField] private float _weight;
 
+        private Bonus[] _bonuses;
+        
+        public void Init() => 
+            _bonuses = GetComponents<Bonus>();
+
         public void Equip(CharacterData characterData)
         {
             characterData.Weight.AddBonus(_weight);
-            AddBonus(characterData);
+            
+            foreach (Bonus bonus in _bonuses) 
+                bonus.AddBonus(characterData);
         }
 
         public void UnEquip(CharacterData characterData)
         {
             characterData.Weight.AddBonus(-_weight);
-            RemoveBonus(characterData);
+            
+            foreach (Bonus bonus in _bonuses) 
+                bonus.RemoveBonus(characterData);
             
             Destroy(gameObject);
         }
-        
-        protected abstract void AddBonus(CharacterData characterData);
-        protected abstract void RemoveBonus(CharacterData characterData);
     }
 }

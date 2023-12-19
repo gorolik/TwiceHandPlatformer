@@ -11,19 +11,27 @@ namespace Sources.Behaviour.Entities
         [SerializeField] private LayerMask _checkMask;
         [SerializeField] private Transform _checkPoint;
         [SerializeField] private CharacterData _characterData;
-
+        [SerializeField] private Health _selfHealth;
+        
         private RaycastHit2D[] _hits = new RaycastHit2D[1];
 
         public bool TryBounceOverCharacter()
         {
             if (Physics2D.CircleCastNonAlloc(_checkPoint.position, _radius, Vector2.down, _hits, 0, _checkMask) > 0)
             {
-                if (_hits[0].collider.TryGetComponent(out Hurtbox hurtbox))
+                int hitsCount = 0;
+                
+                foreach (RaycastHit2D hit in _hits)
                 {
-                    hurtbox.Health.TakeDamage(_characterData.BounceDamage.CurrentValue);
-
-                    return true;
+                    if (hit.collider.TryGetComponent(out Hurtbox hurtbox) && hurtbox.Health != _selfHealth)
+                    {
+                        hurtbox.Health.TakeDamage(_characterData.BounceDamage.CurrentValue);
+                        hitsCount++;
+                    }
                 }
+                
+                if(hitsCount > 0)
+                    return true;
             }
 
             return false;

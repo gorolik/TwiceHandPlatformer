@@ -1,6 +1,8 @@
-﻿using Sources.Behaviour.Items;
+﻿using Sources.Behaviour.Entities.HealthSystem;
+using Sources.Behaviour.Items;
 using Sources.Services.Input;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace Sources.Behaviour.Entities.Player
 {
@@ -13,6 +15,11 @@ namespace Sources.Behaviour.Entities.Player
         [SerializeField] private PlayerMove _move;
         [SerializeField] private PlayerHands _hands;
         [SerializeField] private PlayerAim _aim;
+        [SerializeField] private Transform _observePoint;
+        [SerializeField] private Health _health;
+
+        public Transform ObservePoint => _observePoint;
+        public Health Health => _health;
 
         public void Construct(IInputService inputService, Camera camera)
         {

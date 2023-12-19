@@ -15,13 +15,18 @@ namespace Sources.Behaviour.Entities
 
         public event Action<Direction> DirectionChanged;
 
-        public void SetCharacterViewToLookDirection(float xLookPoint)
+        public void SetCharacterViewToLookDirection(float xLookPoint, bool invertX = true, bool invertY = false)
         {
             Direction newDirection = xLookPoint > transform.position.x ? Direction.Right : Direction.Left;
 
             if (_direction != newDirection)
             {
-                _characterView.localScale = new Vector2(newDirection == Direction.Right ? 1 : -1, _characterView.localScale.y);
+                Vector3 currentScale = _characterView.localScale;
+                
+                float scaleX = invertX ? -currentScale.x : currentScale.x;
+                float scaleY = invertY ? -currentScale.y : currentScale.y;
+
+                _characterView.localScale = new Vector2(scaleX, scaleY);
                 _direction = newDirection;
                 DirectionChanged?.Invoke(_direction);
             }

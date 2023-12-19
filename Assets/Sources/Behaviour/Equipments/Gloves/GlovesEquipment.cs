@@ -2,7 +2,7 @@
 
 namespace Sources.Behaviour.Equipments.Gloves
 {
-    public abstract class GlovesEquipment : Equipment
+    public class GlovesEquipment : Equipment
     {
         [SerializeField] private Transform _leftGlove;
         [SerializeField] private Transform _rightGlove;
