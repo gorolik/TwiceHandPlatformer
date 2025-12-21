@@ -1,25 +1,24 @@
 ﻿using Sources.Behaviour.Entities.HealthSystem;
-using Sources.Behaviour.Items;
 using Sources.Services.Input;
 using UnityEngine;
-using UnityEngine.Serialization;
+using UnityEngine.SceneManagement;
 
 namespace Sources.Behaviour.Entities.Player
 {
     public class PlayerRoot : MonoBehaviour
     {
-        [Header("Setup")] 
-        [SerializeField] private Item _startLeftHandItem;
-        [SerializeField] private Item _startRightHandItem;
         [Header("Links")] 
         [SerializeField] private PlayerMove _move;
         [SerializeField] private PlayerHands _hands;
         [SerializeField] private PlayerAim _aim;
         [SerializeField] private Transform _observePoint;
         [SerializeField] private Health _health;
+        [SerializeField] private PlayerInventory _inventory;
 
         public Transform ObservePoint => _observePoint;
         public Health Health => _health;
+        public PlayerInventory Inventory => _inventory;
+        public PlayerAim Aim => _aim;
 
         public void Construct(IInputService inputService, Camera camera)
         {
@@ -30,13 +29,23 @@ namespace Sources.Behaviour.Entities.Player
 
         public void Init()
         {
+            _health.Dead += OnDead;
+            
             _move.Init();
             _hands.Init();
-
-            if (_startRightHandItem != null)
-                _hands.RightHand.TryTakeItem(Instantiate(_startRightHandItem));
-            if (_startLeftHandItem != null)
-                _hands.LeftHand.TryTakeItem(Instantiate(_startLeftHandItem));
+            _inventory.Init();
         }
+
+        public void SetControls(bool value)
+        {
+            _move.CanMove = value;
+            _aim.CanAim = value;
+        }
+
+        private void OnDestroy() => 
+            _health.Dead -= OnDead;
+
+        private void OnDead() => 
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 }

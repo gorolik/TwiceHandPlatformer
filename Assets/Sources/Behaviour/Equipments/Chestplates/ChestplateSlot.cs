@@ -6,7 +6,7 @@ namespace Sources.Behaviour.Equipments.Chestplates
     {
         [SerializeField] private Transform _body;
 
-        public override void Equip(Equipment equipment)
+        protected override void Equip(Equipment equipment)
         {
             if(equipment is ChestplateEquipment == false)
                 return;

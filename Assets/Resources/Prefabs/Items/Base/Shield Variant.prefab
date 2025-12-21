@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 6043527477894132724}
   - component: {fileID: 8590401212263555750}
   - component: {fileID: 6599601200183593030}
-  m_Layer: 6
+  m_Layer: 10
   m_Name: HitBox
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -129,7 +129,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5335640609733022012}
   - component: {fileID: 7162688828322095484}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Square
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -308,6 +308,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cb3411b86843a94dac0d27db0a3c349, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _weight: 5
   _rigidbody: {fileID: 3466112384463080319}
   _pushForce: 10
   _decisionTime: 0.2

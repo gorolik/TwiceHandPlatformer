@@ -96,7 +96,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _weight: 5
   _rigidbody: {fileID: 1008999982900276532}
-  _fireRate: 0.1
+  _fireRate: 20
   _damage: 5
   _bulletPrefab: {fileID: -8987127864630726008, guid: 8f56d1817e5cea14e9803c7799a74934, type: 3}
 --- !u!50 &1008999982900276532 stripped

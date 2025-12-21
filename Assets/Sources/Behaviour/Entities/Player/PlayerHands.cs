@@ -5,32 +5,33 @@ namespace Sources.Behaviour.Entities.Player
 {
     public class PlayerHands : MonoBehaviour
     {
-        [SerializeField] private CharacterHand[] _hands;
-        
+        [SerializeField] private CharacterHand _leftHand;
+        [SerializeField] private CharacterHand _rightHand;
+
         private IInputService _inputService;
-
-        public CharacterHand RightHand => _hands[0];
-        public CharacterHand LeftHand => _hands[1];
-
+        
+        public CharacterHand LeftHand => _leftHand;
+        public CharacterHand RightHand => _rightHand;
+        
         public void Construct(IInputService inputService) => 
             _inputService = inputService;
 
         public void Init()
         {
-            _inputService.RightFireDown += RightHand.TryBeginUseItem;
-            _inputService.RightFireUp += RightHand.TryEndUseItem;
+            _inputService.RightFireDown += _leftHand.TryBeginUseItem;
+            _inputService.RightFireUp += _leftHand.TryEndUseItem;
             
-            _inputService.LeftFireDown += LeftHand.TryBeginUseItem;
-            _inputService.LeftFireUp += LeftHand.TryEndUseItem;
+            _inputService.LeftFireDown += _rightHand.TryBeginUseItem;
+            _inputService.LeftFireUp += _rightHand.TryEndUseItem;
         }
 
         private void OnDestroy()
         {
-            _inputService.RightFireDown -= RightHand.TryBeginUseItem;
-            _inputService.RightFireUp -= RightHand.TryEndUseItem;
+            _inputService.RightFireDown -= _leftHand.TryBeginUseItem;
+            _inputService.RightFireUp -= _leftHand.TryEndUseItem;
             
-            _inputService.LeftFireDown -= LeftHand.TryBeginUseItem;
-            _inputService.LeftFireUp -= LeftHand.TryEndUseItem;
+            _inputService.LeftFireDown -= _rightHand.TryBeginUseItem;
+            _inputService.LeftFireUp -= _rightHand.TryEndUseItem;
         }
     }
 }

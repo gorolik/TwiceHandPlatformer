@@ -6,8 +6,8 @@ namespace Sources.Behaviour.Equipments.Boots
     {
         [SerializeField] private Transform _leftLeg;
         [SerializeField] private Transform _rightLeg;
-        
-        public override void Equip(Equipment equipment)
+
+        protected override void Equip(Equipment equipment)
         {
             if(equipment is BootsEquipment == false)
                 return;

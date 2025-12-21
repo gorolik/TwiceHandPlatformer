@@ -1,11 +1,13 @@
 ﻿using Sources.Behaviour.Entities.CharacterParameters;
 using Sources.Behaviour.Entities.HealthSystem;
+using Sources.Behaviour.Entities.Player;
+using Sources.Behaviour.Equipments;
 using Sources.Behaviour.Items;
 using UnityEngine;
 
 namespace Sources.Behaviour.Entities
 {
-    public class CharacterHand : MonoBehaviour
+    public class CharacterHand : Slot
     {
         [SerializeField] private CharacterData _characterData;
         [SerializeField] private CharacterViewDirection _characterViewDirection;
@@ -26,19 +28,30 @@ namespace Sources.Behaviour.Entities
 
         private void OnDisable() => 
             _characterViewDirection.DirectionChanged -= SyncDirection;
-        
+
+        protected override bool TrySet(DescribedThink describedThink)
+        {
+            if (describedThink is DescribedItem)
+            {
+                TryTakeItem(describedThink as DescribedItem);
+                return true;
+            }
+
+            return false;
+        }
+
         public void TryBeginUseItem()
         {
             if(_item != null)
                 _item.UseBegin();
         }
-        
+
         public void TryEndUseItem()
         {
             if(_item != null)
                 _item.UseEnd();
         }
-        
+
         public void TryTakeItem(Item item)
         {
             if(item.Taken)
@@ -52,6 +65,12 @@ namespace Sources.Behaviour.Entities
             _characterData.Weight.AddBonus(item.Weight);
         }
 
+        private void TryTakeItem(DescribedItem item)
+        {
+            Item itemInstance = Instantiate(item.ItemPrefab);
+            TryTakeItem(itemInstance);
+        }
+
         private void TryDropItem()
         {
             if (_item == null)
@@ -60,7 +79,7 @@ namespace Sources.Behaviour.Entities
             _characterData.Weight.AddBonus(-_item.Weight);
             _item.Drop();
         }
-        
+
         private void SyncDirection(CharacterViewDirection.Direction direction)
         {
             if (direction == CharacterViewDirection.Direction.Right) 

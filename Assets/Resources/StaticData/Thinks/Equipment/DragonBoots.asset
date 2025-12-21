@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 085bd9f74f44f5c47b8fc57779bfed2b, type: 3}
+  m_Name: DragonBoots
+  m_EditorClassIdentifier: 
+  _name: Dragon boots
+  _description: 
+  _icon: {fileID: 21300000, guid: d0b493515a15c7a47bf2bab446a284b4, type: 3}
+  _slotType: 3
+  _equipmentPrefab: {fileID: 8880124498545369991, guid: 5c0a7c41256f10c40adb0c05ffd5751e, type: 3}

@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using Sources.Behaviour.Entities;
+using Sources.Behaviour.Entities.HealthSystem;
+using UnityEngine;
 
 namespace Sources.Behaviour.Items.Weapons.RangeWeapons
 {
@@ -8,8 +10,13 @@ namespace Sources.Behaviour.Items.Weapons.RangeWeapons
         
         [SerializeField] private float _fireRate = 1;
 
+        protected Health SelfHealth;
+        
         private bool _fire;
         private float _shotTimer;
+
+        protected override void OnTaken(CharacterHand hand) => 
+            SelfHealth = hand.SelfHealth;
 
         public override void UseBegin() => 
             _fire = true;

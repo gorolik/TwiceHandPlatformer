@@ -13,6 +13,8 @@ namespace Sources.Behaviour.Entities.Player
         private IInputService _inputService;
         private Camera _camera;
 
+        public bool CanAim = true;
+        
         public void Construct(IInputService inputService, Camera camera)
         {
             _inputService = inputService;
@@ -21,6 +23,9 @@ namespace Sources.Behaviour.Entities.Player
 
         private void Update()
         {
+            if(!CanAim)
+                return;
+            
             Vector2 aimPoint = _camera.ScreenToWorldPoint(_inputService.MousePosition);
             
             _characterViewDirection.SetCharacterViewToLookDirection(aimPoint.x);

@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 namespace Sources.Behaviour.Entities.HealthSystem
 {
@@ -9,6 +10,8 @@ namespace Sources.Behaviour.Entities.HealthSystem
         [SerializeField] private float _maxValue = 100;
         [Header("Links")] 
         [SerializeField] private GameObject _rootObject;
+
+        public event Action Dead;
 
         private bool _death;
         
@@ -39,6 +42,8 @@ namespace Sources.Behaviour.Entities.HealthSystem
             if (Value <= 0 && !_death)
             {
                 _death = true;
+                Dead?.Invoke();
+                
                 Destroy(_rootObject);
 
                 Debug.Log("Смерть");

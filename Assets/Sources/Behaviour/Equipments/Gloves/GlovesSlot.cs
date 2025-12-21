@@ -7,7 +7,7 @@ namespace Sources.Behaviour.Equipments.Gloves
         [SerializeField] private Transform _rightHand;
         [SerializeField] private Transform _leftHand;
 
-        public override void Equip(Equipment equipment)
+        protected override void Equip(Equipment equipment)
         {
             if(equipment is GlovesEquipment == false)
                 return;

@@ -21,7 +21,8 @@ namespace Sources.Behaviour.Entities
         [SerializeField] private CharacterAnimator _characterAnimator;
         [SerializeField] private CharacterViewDirection _characterViewDirection;
 
-
+        public bool CanMove = true;
+        
         private enum State { Stay, Walking, Falling }
 
         private float _jumpMargin;
@@ -37,6 +38,9 @@ namespace Sources.Behaviour.Entities
 
         protected void Move(float horizontal)
         {
+            if (!CanMove)
+                horizontal = 0;
+            
             horizontal = Mathf.Clamp(horizontal, -1, 1);
             
             Vector2 direction = new Vector2(horizontal, 0);
@@ -93,6 +97,8 @@ namespace Sources.Behaviour.Entities
 
         private bool CanJump()
         {
+            if (!CanMove)
+                return false;
             if (_jumping == false && _groundChecker.IsGrounded())
                 return true;
             else if (_bounceOverCharacter.TryBounceOverCharacter())

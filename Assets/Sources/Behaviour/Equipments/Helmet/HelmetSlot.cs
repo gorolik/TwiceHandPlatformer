@@ -6,7 +6,7 @@ namespace Sources.Behaviour.Equipments.Helmet
     {
         [SerializeField] private Transform _head;
 
-        public override void Equip(Equipment equipment)
+        protected override void Equip(Equipment equipment)
         {
             if(equipment is HelmetEquipment == false)
                 return;

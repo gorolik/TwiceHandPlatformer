@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 2015765459880859649}
   - component: {fileID: 7089393253182982398}
   - component: {fileID: 1237576924679626963}
-  m_Layer: 6
+  m_Layer: 10
   m_Name: Hitbox
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -129,7 +129,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3542255154736634122}
   - component: {fileID: 573511316967871837}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Square
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -213,7 +213,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1843885287263786548}
   - component: {fileID: 1496012885354964444}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Trail
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -443,11 +443,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1720ae71b6cd61a48a63c5ca376928c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _weight: 5
   _rigidbody: {fileID: 3866584812065550276}
   _damage: 10
   _comboData:
     Stages:
     - DamageRatio: 1
+      PushForce: 0
       ContinueDelay: 0.2
       ContinueTime: 0.4
   _trail: {fileID: 1496012885354964444}

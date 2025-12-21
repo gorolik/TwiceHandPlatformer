@@ -11,7 +11,7 @@ namespace Sources.Behaviour.Items.Weapons.RangeWeapons
         protected override void Shot()
         {
             Bullet bullet = Instantiate(_bulletPrefab, transform.position, transform.rotation * ProjectileUpEulerOffset);
-            bullet.Init(_damage);
+            bullet.Init(SelfHealth, _damage);
         }
     }
 }

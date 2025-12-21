@@ -23,8 +23,9 @@ namespace Sources.Behaviour.Entities.Player
 
         protected override void Update()
         {
-            Move(_inputService.HorizontalAxis);
-            
+            float horizontal = _inputService.HorizontalAxis;
+            Move(horizontal);
+
             base.Update();
         }
     }

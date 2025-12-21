@@ -11,9 +11,13 @@ namespace Sources.Behaviour.Projectiles
         private float _damage;
         private Vector2 _previousPosition;
         private bool _isCollided;
+        private Health _self;
 
-        public void Init(float damage) => 
+        public void Init(Health self, float damage)
+        {
+            _self = self;
             _damage = damage;
+        }
 
         private void Update()
         {
@@ -28,9 +32,13 @@ namespace Sources.Behaviour.Projectiles
         {
             if (IsCollide(out RaycastHit2D hit))
             {
-                transform.position = hit.point;
+                if (hit.collider.TryGetComponent(out Hurtbox hurtbox))
+                    if (hurtbox.Health == _self)
+                        return;
+                    else
+                        GiveDamage(hurtbox);
 
-                TryDamage(hit.collider);
+                transform.position = hit.point;
                 
                 _isCollided = true;
                 Destroy(gameObject);
@@ -53,10 +61,7 @@ namespace Sources.Behaviour.Projectiles
             return hit.collider != null;
         }
 
-        private void TryDamage(Collider2D hitCollider)
-        {
-            if(hitCollider.TryGetComponent(out Hurtbox hurtbox))
-                hurtbox.Health.TakeDamage(_damage);
-        }
+        private void GiveDamage(Hurtbox hurtbox) => 
+            hurtbox.Health.TakeDamage(_damage);
     }
 }

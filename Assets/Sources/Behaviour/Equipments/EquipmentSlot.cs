@@ -1,16 +1,34 @@
 ﻿using Sources.Behaviour.Entities.CharacterParameters;
+using Sources.Behaviour.Entities.Player;
 using UnityEngine;
 
 namespace Sources.Behaviour.Equipments
 {
-    public abstract class EquipmentSlot : MonoBehaviour
+    public abstract class EquipmentSlot : Slot
     {
         [SerializeField] private Transform _generalParent;
         [SerializeField] private CharacterData _characterData;
 
         private Equipment _equipment;
 
-        public virtual void Equip(Equipment equipment)
+        protected override bool TrySet(DescribedThink describedThink)
+        {
+            if (describedThink is DescribedEquipment)
+            {
+                Equip(describedThink as DescribedEquipment);
+                return true;
+            }
+
+            return false;
+        }
+
+        private void Equip(DescribedEquipment equipment)
+        {
+            Equipment equipmentInstance = Instantiate(equipment.EquipmentPrefab);
+            Equip(equipmentInstance);
+        }
+
+        protected virtual void Equip(Equipment equipment)
         {
             if (_equipment != null)
                 UnEquip();
@@ -37,5 +55,20 @@ namespace Sources.Behaviour.Equipments
             _equipment.UnEquip(_characterData);
             _equipment = null;
         }
+    }
+
+    public abstract class Slot : MonoBehaviour
+    {
+        private DescribedThink _describedThink;
+
+        public DescribedThink DescribedThink => _describedThink;
+
+        public void Set(DescribedThink describedThink)
+        {
+            if (TrySet(describedThink))
+                _describedThink = describedThink;
+        }
+
+        protected abstract bool TrySet(DescribedThink describedThink);
     }
 }
